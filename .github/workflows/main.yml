@@ -33,7 +33,9 @@ jobs:
           deactivate
           
       - name: move main
-        run: cp ./main.py ./lib/lib/python3.8/site-packages/main.py
+        run: |
+          pwd
+          ls
       
       - name: zip
         uses: montudor/action-zip@v0.1.0

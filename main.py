@@ -3,11 +3,12 @@ import psycopg2
 import time
 from datetime import datetime
 import json
+import os
 
-dbname = 'news_aggregator'
-user = 'postgres_admin'
-password = 'Newsaggregator2021'
-host = 'news-aggregator.clxhoin1r2lp.us-east-1.rds.amazonaws.com'
+dbname = os.environ['DB_NAME']
+user = os.environ['DB_USERNAME']
+password = os.environ['DB_PASSWORD']
+host = os.environ['DB_HOST']
 
 conn = psycopg2.connect(
     f'dbname={dbname} user={user} password={password} host={host}')

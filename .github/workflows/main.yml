@@ -32,8 +32,8 @@ jobs:
           pip3 install -r requirements.txt
           deactivate
           
-      - name: move main
-        run: cp ./main.py ./lib/lib/python3.8/site-packages/main.py 
+      - name: move lambda function
+        run: cp ./lambda_function.py ./lib/lib/python3.8/site-packages/lambda_function.py 
       
       - name: zip
         uses: montudor/action-zip@v0.1.0

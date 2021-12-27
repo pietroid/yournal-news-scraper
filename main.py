@@ -65,7 +65,7 @@ def scrape_news_website(pageId, pageUrl):
             break
 
 
-def handler(event):
+def handler(event, context):
     global records_processed
     if('Records' not in event):
         return 'Unsuccesfull. Records not present.'

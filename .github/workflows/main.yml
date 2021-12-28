@@ -23,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.8'
+          python-version: '3.9'
       
       - name: install dependencies
         run: |
@@ -38,7 +38,8 @@ jobs:
       - name: zip
         uses: montudor/action-zip@v0.1.0
         with:
-          args: zip -qq -r ./bundle.zip ./lib/lib/python3.8/site-packages/
+          args: zip -qq -r ./bundle.zip ./
+          working-directory: ./lib/lib/python3.8/site-packages/
 
       - name: default deploy
         uses: appleboy/lambda-action@master

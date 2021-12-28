@@ -35,11 +35,12 @@ jobs:
       - name: move lambda function
         run: cp ./lambda_function.py ./lib/lib/python3.9/site-packages/lambda_function.py 
       
-      - name: zip
-        uses: montudor/action-zip@v0.1.0
-        with:
-          args: zip -qq -r ./bundle.zip ./
-          working-directory: ./lib/lib/python3.9/site-packages/
+      - name: Install zip
+        uses: montudor/action-zip@v1
+
+      - name: Zip output
+        run: zip -qq -r .bundle.zip ./
+        working-directory: ./lib/lib/python3.9/site-packages/
 
       - name: default deploy
         uses: appleboy/lambda-action@master

@@ -1,5 +1,6 @@
 import newspaper
 import psycopg2
+import hashlib
 import time
 from datetime import datetime
 import json
@@ -23,6 +24,8 @@ text_limit = 500
 
 def process_article(news_article, pageId):
     global text_limit
+    url_hash = hashlib.md5(str.encode(news_article.url)).hexdigest()
+
     cursor.execute(cursor.mogrify((
         'INSERT INTO public.news_summaries ('
         'date_published,'
@@ -31,6 +34,7 @@ def process_article(news_article, pageId):
         'main_text,'
         'main_image_url,'
         'news_source_url,'
+        'url_hash,'
         'news_page_id)'
         'VALUES (%s, %s, %s, %s, %s, %s, %s)'), (
         news_article.publish_date,
@@ -39,6 +43,7 @@ def process_article(news_article, pageId):
         news_article.text[0:text_limit],
         news_article.top_image,
         news_article.url,
+        url_hash,
         pageId,
     )))
     conn.commit()

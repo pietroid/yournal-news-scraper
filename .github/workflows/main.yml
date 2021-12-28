@@ -39,7 +39,7 @@ jobs:
         uses: montudor/action-zip@v1
 
       - name: Zip output
-        run: zip -qq -r .bundle.zip ./
+        run: zip -qq -r ./bundle.zip ./
         working-directory: ./lib/lib/python3.9/site-packages/
 
       - name: default deploy
@@ -49,4 +49,4 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           function_name: news-scraper
-          zip_file: bundle.zip
+          zip_file: ./lib/lib/python3.9/site-packages/bundle.zip
